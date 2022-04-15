@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudknowledges
+spec:
+  selector:
+    matchLabels:
+      app: cloudknowledges
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavilable: 1
+  template:
+    metadata:
+      labels:
+        app: cloudknowledge
+    spec:
+      containers:
+      - name: cloudknowledge
+        image: avnshrai/kubernetesproject
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
